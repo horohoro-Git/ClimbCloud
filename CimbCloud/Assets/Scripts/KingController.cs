@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class KingController : MonoBehaviour
 {
+    enum PlayerState
+    {
+        STAND,
+        FALLING,
+        DEAD
+    }
+
+    PlayerState ps;
     Rigidbody2D rigid;
     Animator animator;
-    float fallingSpeed;
-    bool bPressedJump;
     bool attack;
     float attackTimer;
-    float moveSpeed;
     public PigController enemy;
+    float direction =1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,91 +29,92 @@ public class KingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        if(attackTimer > 0f && attack ==true)
+        if (ps != PlayerState.DEAD)
         {
-            
-            attackTimer -= Time.deltaTime;
-            if(attackTimer < 0f)
+
+            //공격 타이머
+            if (attackTimer > 0f && attack == true)
             {
-                attack = false;
-                animator.SetBool("attack", false);
-                Debug.Log("공격이 끝남");
-              
-            } 
-        }
 
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        moveSpeed = horizontal;
-      //  Debug.Log(vertical + " " + horizontal);
-       
-        //무조건 -1,0,1
-        //0이아니면 이동중
-        if(horizontal == 0f)
-        {
-            animator.SetInteger("state", 0);
-        }
-        else
-        {
-            animator.SetInteger("state", 1);
-            transform.localScale = new Vector3(horizontal, 1, 1);
-
-            if (rigid.velocity.y == 0f)
-            {
-                Vector2 vel = new Vector2(horizontal * 1, 0);
-                if (attack == false) rigid.velocity = vel;
-            }
-        }
-
-        if (attack == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                attackTimer = 0.375f;
-                attack = true;
-                animator.SetBool("attack", true);
-                if (Mathf.Abs(transform.position.x - enemy.transform.position.x + transform.localScale.x * 2) < 1f)
+                attackTimer -= Time.deltaTime;
+                if (attackTimer < 0f)
                 {
+                    attack = false;
+                    animator.SetBool("attack", false);
                     Debug.Log("공격이 끝남");
-                    enemy.Hit();
 
                 }
             }
-        }
-         if(Input.GetKey(KeyCode.Q))
-         {
-             animator.SetInteger("state", 3);
-         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            if(rigid.velocity.y == 0f)
+            float horizontal = Input.GetAxisRaw("Horizontal");
+
+            //무조건 -1,0,1
+            //0이아니면 이동중
+            if (horizontal == 0f)
             {
-                Vector2 vel = new Vector2(0,10f * 1);
-                rigid.AddForce(vel * 20f);
-              //  rigid.velocity = vel;
-                bPressedJump = true;
-             //   animator.SetBool("jump", true);
+                animator.SetInteger("state", 0);
+            }
+            else
+            {
+                animator.SetInteger("state", 1);
+                transform.localScale = new Vector3(horizontal, 1, 1);
+                direction = horizontal;
+                if (ps != PlayerState.DEAD && rigid.velocity.y == 0f)
+                {
+                    Vector2 vel = new Vector2(horizontal * 1, 0);
+                    if (attack == false) rigid.velocity = vel;
+                }
+            }
+
+            //플레이어 공격
+            if (attack == false)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    attackTimer = 0.375f;
+                    attack = true;
+                    animator.SetBool("attack", true);
+                    if (Mathf.Abs(transform.position.x - enemy.transform.position.x + direction) < 1.5f)
+                    {
+                        enemy.Hit();
+
+                    }
+                }
+            }
+
+            // 플레이어 점프
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (ps != PlayerState.DEAD && rigid.velocity.y == 0)
+                {
+                    Vector2 vel = new Vector2(0, 10f * 1);
+                    rigid.AddForce(vel * 20f);
+                }
+            }
+            if (rigid.velocity.y > 0f)
+            {
+                animator.SetInteger("jump", 1);
+                ps = PlayerState.FALLING;
+            }
+            else if (rigid.velocity.y < 0f)
+            {
+                animator.SetInteger("jump", 2);
+                ps = PlayerState.FALLING;
+            }
+            else
+            {
+                animator.SetInteger("jump", 0);
+                ps = PlayerState.STAND;
 
             }
-        }
 
 
-        if(rigid.velocity.y > 0f)
-        {
-            animator.SetInteger("jump", 1);
+            //플레이어 사망
+            if (Input.GetKey(KeyCode.Q))
+            {
+                animator.SetInteger("state", 3);
+                ps = PlayerState.DEAD;
+            }
         }
-        else if(rigid.velocity.y < 0f)
-        {
-            animator.SetInteger("jump", 2);
-        }
-        else
-        {
-            animator.SetInteger("jump", 0);
-            
-        }
-        fallingSpeed = rigid.velocity.y;
     }
 }
