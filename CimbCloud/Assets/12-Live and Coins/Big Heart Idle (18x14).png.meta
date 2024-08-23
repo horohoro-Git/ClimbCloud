@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cb48dc892d8e7e546b051875532de99b
+guid: a0ed2a8b01fa98345a7a3336dc9d6e89
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 19
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,106 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack (38x28)_0
+      name: Big Heart Idle (18x14)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 38
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2735ba3c929876142a92dad17e585254
-      internalID: 1231148806
+      spriteID: 7e5b3d9c79023564b897d53776127f79
+      internalID: 351973420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack (38x28)_1
+      name: Big Heart Idle (18x14)_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 18
         y: 0
-        width: 38
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b536149e37def04f94785a80d662622
-      internalID: -1798218835
+      spriteID: 11fc6fa6a472f00459ada0b05d2c0615
+      internalID: 132227571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack (38x28)_2
+      name: Big Heart Idle (18x14)_2
       rect:
         serializedVersion: 2
-        x: 76
+        x: 36
         y: 0
-        width: 38
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4c990de789993848a2b8a5ddd7b242e
-      internalID: 664727244
+      spriteID: 958e41f76458d8f49ac2a452ff94aab9
+      internalID: 160438025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack (38x28)_3
+      name: Big Heart Idle (18x14)_3
       rect:
         serializedVersion: 2
-        x: 114
+        x: 54
         y: 0
-        width: 38
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2c996125659d844687634827293072f
-      internalID: 932616542
+      spriteID: b29fd05d5e48027419c48c1c3b044c08
+      internalID: -1341525756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack (38x28)_4
+      name: Big Heart Idle (18x14)_4
       rect:
         serializedVersion: 2
-        x: 152
+        x: 72
         y: 0
-        width: 38
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59e9a93e51a92934892227e45a588508
-      internalID: -988994535
+      spriteID: 02768880ada0453489e4f0f89cd99851
+      internalID: -1833372309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Heart Idle (18x14)_5
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39113c2f9f856354e9c0d9960296cc36
+      internalID: -1377476056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Heart Idle (18x14)_6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c36dabb6a3e004482607d05f25a87c
+      internalID: -1806828256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big Heart Idle (18x14)_7
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 0
+        width: 18
+        height: 14
+      alignment: 9
+      pivot: {x: 0.8, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98688119d365c7498cec69b6bb353f5
+      internalID: -1746417245
       vertices: []
       indices: 
       edges: []
@@ -238,11 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack (38x28)_0: 1231148806
-      Attack (38x28)_1: -1798218835
-      Attack (38x28)_2: 664727244
-      Attack (38x28)_3: 932616542
-      Attack (38x28)_4: -988994535
+      Big Heart Idle (18x14)_0: 351973420
+      Big Heart Idle (18x14)_1: 132227571
+      Big Heart Idle (18x14)_2: 160438025
+      Big Heart Idle (18x14)_3: -1341525756
+      Big Heart Idle (18x14)_4: -1833372309
+      Big Heart Idle (18x14)_5: -1377476056
+      Big Heart Idle (18x14)_6: -1806828256
+      Big Heart Idle (18x14)_7: -1746417245
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

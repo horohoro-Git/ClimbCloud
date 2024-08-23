@@ -1,36 +1,56 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using Unity.Mathematics;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class KingController : MonoBehaviour
 {
+    struct Stat
+    {
+        public const int minDamage = 25;
+        public const int maxDamage = 50;
+    }
     enum PlayerState
     {
         STAND,
         FALLING,
         DEAD
     }
-
+    public Action<PigController> KilledEnemy;
     PlayerState ps;
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     Animator animator;
     bool attack;
     float attackTimer;
     public PigController enemy;
-    float direction =1f;
+    List<PigController> enemies;
+    public float direction =1f;
+    bool isCanKnockBack;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
-        
+        enemies = new List<PigController>();
+        KilledEnemy = (PigController controller) => { enemies.Remove(controller); };
     }
 
     // Update is called once per frame
     void Update()
     {
+        isCanKnockBack = true;
         if (ps != PlayerState.DEAD)
         {
+
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                PigController go = GameObject.Instantiate(enemy);
+                GameObject game = go.gameObject;
+                game.transform.position = new Vector2(transform.position.x + 3f, transform.position.y);
+                enemies.Add(go);
+            }
 
             //공격 타이머
             if (attackTimer > 0f && attack == true)
@@ -74,10 +94,15 @@ public class KingController : MonoBehaviour
                     attackTimer = 0.375f;
                     attack = true;
                     animator.SetBool("attack", true);
-                    if (Mathf.Abs(transform.position.x - enemy.transform.position.x + direction) < 1.5f)
-                    {
-                        enemy.Hit();
 
+                    for(int i =0; i<enemies.Count; i++)
+                    {
+                        if (Mathf.Abs(transform.position.x - enemies[i].transform.position.x + direction) < 1.5f
+                            && Mathf.Abs(transform.position.y - enemies[i].transform.position.y) < 2f)
+                        {
+                            
+                            enemies[i].Hit(Random.Range(Stat.minDamage, Stat.maxDamage + 1), direction);
+                        }
                     }
                 }
             }
@@ -115,6 +140,15 @@ public class KingController : MonoBehaviour
                 animator.SetInteger("state", 3);
                 ps = PlayerState.DEAD;
             }
+        }
+    }
+
+    public void Knockback(float dir)
+    {
+        if (isCanKnockBack)
+        {
+            isCanKnockBack = false;
+            rigid.AddForce(new Vector2(5f * dir, -1));
         }
     }
 }
